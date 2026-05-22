@@ -18,7 +18,7 @@ public class Player {
         );
 
         // Set player color
-        playerTriangle.setFill(Color.LIMEGREEN);
+        playerTriangle.setFill(Color.ROYALBLUE);
     }
 
     public Polygon getPlayerTriangle() {

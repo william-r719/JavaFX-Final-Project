@@ -1,20 +1,47 @@
+import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+/**
+ * The Controls class handles player input during the game.
+ * It allows the player to move with WASD, aim with the mouse,
+ * shoot projectiles, and prevents the player from moving through walls.
+ *
+ * @author William Rodriguez
+ */
 public class Controls {
 
     // Movement speed for the player
     private final double SPEED = 5;
 
-    public Controls(Scene scene, Group root, Polygon playerTriangle, ArrayList<Rectangle> walls) {
+    /**
+     * Creates a Controls object and connects keyboard and mouse controls
+     * to the game scene.
+     *
+     * @param scene the game scene that listens for keyboard and mouse input
+     * @param root the root group where player projectiles are added
+     * @param playerTriangle the player's triangle shape
+     * @param walls the list of wall rectangles used for collision detection
+     * @param enemies the list of enemies that player projectiles can hit
+     * @param primaryStage the main window used to close the game
+     */
+    public Controls(Scene scene, Group root, Polygon playerTriangle,
+                    ArrayList<Rectangle> walls, ArrayList<Enemy> enemies,
+                    Stage primaryStage) {
 
         // Listen for key presses on the game scene
         scene.setOnKeyPressed(event -> {
+
+            // Secret button: press P to close the whole game
+            if (event.getCode() == KeyCode.P) {
+                primaryStage.close();
+            }
 
             // Save the player's old position before moving
             double oldX = playerTriangle.getTranslateX();
@@ -50,40 +77,46 @@ public class Controls {
         // Make the triangle rotate toward the mouse
         scene.setOnMouseMoved(event -> {
 
-            // Get the center of the triangle
+            // Convert full screen mouse position into the scaled game root position
+            Point2D mousePoint = root.sceneToLocal(event.getSceneX(), event.getSceneY());
+
             double playerCenterX = playerTriangle.getBoundsInParent().getCenterX();
             double playerCenterY = playerTriangle.getBoundsInParent().getCenterY();
 
-            // Get the mouse position
-            double mouseX = event.getX();
-            double mouseY = event.getY();
+            double mouseX = mousePoint.getX();
+            double mouseY = mousePoint.getY();
 
-            // Find the angle from the player to the mouse
             double angle = Math.atan2(mouseY - playerCenterY, mouseX - playerCenterX);
-
-            // Convert angle from radians to degrees
             double angleDegrees = Math.toDegrees(angle);
 
-            // Rotate the triangle toward the mouse
             playerTriangle.setRotate(angleDegrees + 90);
         });
 
         // Shoot a projectile when the mouse is clicked
         scene.setOnMouseClicked(event -> {
 
-            // Get the center of the player
+            // Convert full screen mouse position into the scaled game root position
+            Point2D mousePoint = root.sceneToLocal(event.getSceneX(), event.getSceneY());
+
             double playerCenterX = playerTriangle.getBoundsInParent().getCenterX();
             double playerCenterY = playerTriangle.getBoundsInParent().getCenterY();
 
-            // Get the mouse click position
-            double mouseX = event.getX();
-            double mouseY = event.getY();
+            double mouseX = mousePoint.getX();
+            double mouseY = mousePoint.getY();
 
-            // Create a projectile that travels toward the mouse click
-            new Projectile(root, playerCenterX, playerCenterY, mouseX, mouseY);
+            // Projectile checks walls and enemies
+            new Projectile(root, playerCenterX, playerCenterY, mouseX, mouseY, walls, enemies);
         });
     }
 
+    /**
+     * Checks whether the player is touching any wall.
+     * This is used to stop the player from walking through the maze walls.
+     *
+     * @param playerTriangle the player's triangle shape
+     * @param walls the list of wall rectangles used for collision detection
+     * @return true if the player is touching a wall, otherwise false
+     */
     private boolean isTouchingWall(Polygon playerTriangle, ArrayList<Rectangle> walls) {
 
         for (Rectangle wall : walls) {

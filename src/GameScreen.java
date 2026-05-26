@@ -110,34 +110,34 @@ public class GameScreen {
          * RED ENEMIES
          * These enemies chase the player.
          */
-        //enemies.add(new Enemy(60, 85, "RED"));
-        //enemies.add(new Enemy(470, 95, "RED"));
-        //enemies.add(new Enemy(185, 470, "RED"));
-        //enemies.add(new Enemy(470, 600, "RED"));
-        //enemies.add(new Enemy(900, 585, "RED"));
-        //enemies.add(new Enemy(1170, 595, "RED"));
-        //enemies.add(new Enemy(1160, 500, "RED"));
+        enemies.add(new Enemy(60, 85, "RED"));
+        enemies.add(new Enemy(470, 95, "RED"));
+        enemies.add(new Enemy(185, 470, "RED"));
+        enemies.add(new Enemy(470, 600, "RED"));
+        enemies.add(new Enemy(900, 585, "RED"));
+        enemies.add(new Enemy(1170, 595, "RED"));
+        enemies.add(new Enemy(1160, 500, "RED"));
 
         /*
          * GREEN ENEMIES
          * These enemies stand still and shoot at the player.
          */
-        //enemies.add(new Enemy(350, 85, "GREEN"));
-        //enemies.add(new Enemy(590, 90, "GREEN"));
-       // enemies.add(new Enemy(830, 100, "GREEN"));
-        //enemies.add(new Enemy(825, 230, "GREEN"));
-       // enemies.add(new Enemy(870, 390, "GREEN"));
+        enemies.add(new Enemy(350, 85, "GREEN"));
+        enemies.add(new Enemy(590, 90, "GREEN"));
+        enemies.add(new Enemy(830, 100, "GREEN"));
+        enemies.add(new Enemy(825, 230, "GREEN"));
+        enemies.add(new Enemy(870, 390, "GREEN"));
 
-        //enemies.add(new Enemy(260, 485, "GREEN"));
-        //enemies.add(new Enemy(350, 450, "GREEN"));
-        //enemies.add(new Enemy(350, 530, "GREEN"));
-        //enemies.add(new Enemy(480, 460, "GREEN"));
-        //enemies.add(new Enemy(550, 530, "GREEN"));
-        //enemies.add(new Enemy(685, 520, "GREEN"));
-        //enemies.add(new Enemy(840, 540, "GREEN"));
+        enemies.add(new Enemy(260, 485, "GREEN"));
+        enemies.add(new Enemy(350, 450, "GREEN"));
+        enemies.add(new Enemy(350, 530, "GREEN"));
+        enemies.add(new Enemy(480, 460, "GREEN"));
+        enemies.add(new Enemy(550, 530, "GREEN"));
+        enemies.add(new Enemy(685, 520, "GREEN"));
+        enemies.add(new Enemy(840, 540, "GREEN"));
 
-        //enemies.add(new Enemy(1030, 445, "GREEN"));
-        //enemies.add(new Enemy(1025, 600, "GREEN"));
+        enemies.add(new Enemy(1030, 445, "GREEN"));
+        enemies.add(new Enemy(1025, 600, "GREEN"));
         enemies.add(new Enemy(1165, 320, "GREEN"));
 
         // Add all enemy shapes to the screen

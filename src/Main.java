@@ -77,7 +77,7 @@ public class Main extends Application {
         }
 
         // Create the game title
-        Text titleText = new Text("Alien Crash-Out");
+        Text titleText = new Text("Maze Game");
         titleText.setFont(Font.font("Verdana", 70));
         titleText.setFill(Color.LIMEGREEN);
 

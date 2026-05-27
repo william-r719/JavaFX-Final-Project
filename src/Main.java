@@ -61,7 +61,7 @@ public class Main extends Application {
         Scene mainMenuScene = new Scene(root, sceneWidth, sceneHeight, Color.BLACK);
 
         // Set up the main window
-        primaryStage.setTitle("Alien CrashOut");
+        primaryStage.setTitle("Maze Game");
         primaryStage.setResizable(false);
 
         /*

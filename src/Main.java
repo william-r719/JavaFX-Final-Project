@@ -11,7 +11,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
- * The Main class starts the Alien Crash-Out game.
+ * The Main class starts the Maze Game.
  * It creates the main menu screen and allows the player to either start
  * the game or quit the program.
  *
